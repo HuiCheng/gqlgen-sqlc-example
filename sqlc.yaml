@@ -1,0 +1,29 @@
+---
+version: 2
+sql:
+  - engine: "sqlite"
+    queries: "pkgs/db/query/"
+    schema: "pkgs/db/schema"
+    gen:
+      go:
+        package: "db"
+        out: "pkgs/db/"
+        emit_result_struct_pointers: true
+        emit_params_struct_pointers: true
+        overrides:
+          - db_type: "TEXT"
+            nullable: true
+            go_type:
+              import: "idea2/graph/model"
+              type: "NullString"
+              pointer: true
+          - db_type: "TIMESTAMP"
+            go_type:
+              import: "idea2/graph/model"
+              type: "Timestamp"
+          - db_type: "TIMESTAMP"
+            nullable: true
+            go_type:
+              import: "idea2/graph/model"
+              type: "Timestamp"
+              pointer: true

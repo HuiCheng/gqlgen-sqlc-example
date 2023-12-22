@@ -1,0 +1,59 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  GetDevice(id: ID!): Device!
+  GetDevices: [Device!]!
+  GetDeviceAuth: DeviceAuth
+  GetDeviceAuths: [DeviceAuth!]!
+}
+
+type Mutation {
+  createDeviceAuth(input: CreateDeviceAuthParams): DeviceAuth!
+}
+
+input CreateDeviceAuthParams {
+  title: String!
+  type: DeviceAuthType!
+  username: NullString
+  password: NullString
+  private_key: NullString
+}
+
+enum ConnectType {
+  ssh
+  telnet
+}
+
+enum DeviceAuthType {
+  username_password
+  private_key
+}
+
+type Devaa {
+  title: String
+}
+
+type Device {
+  id: ID!
+  title: String!
+  address: String!
+  connectType: String!
+  note: String!
+  auth: DeviceAuth!
+  createdAt: Timestamp!
+  updatedAt: Timestamp
+}
+
+type DeviceAuth {
+  id: ID!
+  title: String!
+  type: DeviceAuthType!
+  username: NullString
+  createdAt: Timestamp!
+  updatedAt: Timestamp
+}
+
+scalar Timestamp
+scalar NullString

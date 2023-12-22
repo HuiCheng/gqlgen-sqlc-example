@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS device;
+DROP TABLE IS EXISTS device_auth;
